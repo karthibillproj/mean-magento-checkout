@@ -1,0 +1,42 @@
+<style type="text/css">
+.thumbnail{ min-height: auto;}
+input[type="radio"] {display:block !important;}
+.checkoutpage .loading::before{ background-color: #999999;}
+</style>
+<div  *ngIf="mainloader" class="checkoutpage">
+        <div class="loading">Loading&#8230;</div>
+</div>
+<div *ngIf="!mainloader">
+       <div class="row form-group">
+            <div class="col-xs-12">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                    <li (click)="billingaddressshow()" [ngClass]="{ 'active': activebillingaddressclass,'disabled':disablebillingaddressclass  }"><a href="javascript:void(0)">
+                        <h4 class="list-group-item-heading">Step 1</h4>
+                        <p class="list-group-item-text">Billing address</p>
+                    </a></li>
+                    <li (click)="shippingaddressshow(openshippingaddresstab)" [ngClass]="{ 'active': activeshipaddressclass,'disabled':disableshipaddressclass  }"><a href="javascript:void(0)">
+                        <h4 class="list-group-item-heading">Step 2</h4>
+                        <p class="list-group-item-text">Shipping address</p>
+                    </a></li>
+                    <li (click)="shippingmethodshow(openshippingmethodtab)" [ngClass]="{ 'active': activeshippingmethodclass,'disabled':disableshippingmethodclass  }"><a href="javascript:void(0)">
+                        <h4 class="list-group-item-heading">Step 3</h4>
+                        <p class="list-group-item-text">Shipping method</p>
+                    </a></li>
+                    <li (click)="paymentmethodshow(openpaymentmethodtab)" [ngClass]="{ 'active': activepaymentmethodcalss,'disabled':diablepaymetmethodclass  }"><a href="javascript:void(0)">
+                        <h4 class="list-group-item-heading">Step 4</h4>
+                        <p class="list-group-item-text">Payment method</p>
+                    </a></li> 
+                    <li (click)="orderreviewshow(openorderreviewtab)" [ngClass]="{ 'active': activeorderreviewcalss,'disabled':diableorderreviewclass  }"><a href="javascript:void(0)">
+                        <h4 class="list-group-item-heading">Step 5</h4>
+                        <p class="list-group-item-text">Order review</p>
+                    </a></li>      
+                </ul>
+            </div>
+       </div>  
+
+<billingaddress *ngIf="showbillingaddress" (billingaddressdetails)="billingsave($event);"></billingaddress>
+<shippingaddress *ngIf="showshippingaddress" (shippingaddressdetails)="shippingsave($event);"></shippingaddress>
+<shippingmethod *ngIf="showshippingmethod" (shippingmethoddetails)="shippingmethodsave($event);"></shippingmethod>
+<paymentmethod *ngIf="showpaymentmethod" (paymentmethoddetails)="paymentmethodsave($event);"></paymentmethod>
+<orderreview *ngIf="showorderreview" (createorder)="placeorder($event);"></orderreview>
+</div>
